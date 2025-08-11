@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'book',   #方案1：直接添加子应用目录名称
     'book.apps.BookConfig'  #方案2：添加子应用配置类名称
 ]
 
@@ -74,14 +73,24 @@ WSGI_APPLICATION = 'bookmanager.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
+#此处为数据库配置，默认为使用sqlite3数据库
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+#修改为mysql数据库
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
+        'NAME': 'bookmanager',  # 对应的库名称
+        'USER': 'root',      # 数据库用户名
+        'PASSWORD': 'Tangkai.123', # 数据库密码
+        'HOST': '192.168.159.133',  # 数据库主机
+        'PORT': '3306',    # 数据库端口
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -105,12 +114,15 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
+#默认是英文
+#LANGUAGE_CODE = 'en-us'
+#可切混为中文
+LANGUAGE_CODE = 'zh-hans'
 TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
+#默认时区为UTC
+#USE_I18N = True
+#修改时区为东八区
+USE_I18N = 'Asia/Shanghai'
 USE_L10N = True
 
 USE_TZ = True
